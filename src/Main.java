@@ -1,4 +1,4 @@
-	import java.text.ParseException;
+	/*import java.text.ParseException;
 	import java.text.SimpleDateFormat;
 	import java.util.Scanner;
 
@@ -6,7 +6,7 @@
 
 		public static void main(String[] args) {
 			
-			/* Metodo 1*/
+			/* Metodo 1*//*
 			System.out.println("******Metodo3******");
 			
 			Ibex ibex=new Ibex();
@@ -23,3 +23,4 @@
 		}
 
 	}
+*/
