@@ -25,7 +25,7 @@ public class Ibex {
 	public static final int CAMPO_CLOSE = 7;
 
 	final static String RUTA = "res/bolsa.csv";
-	private static final int TAM_AÑO = 0;
+	private static final int TAM_AÑO = 4;
 		
 		
 /*Metodo 3
@@ -38,7 +38,7 @@ devuelve en float con la media de cierre de la bolsa de un año dado, si la fech
 		public float getCloseValue(int year, String path) {
 			
 			Path ruta = Paths.get(path);
-			String record;
+			String record ;
 			float closeValue = 0.0f;
 			String sYear = Integer.toString(year);
 			int numYears =0;
@@ -48,27 +48,32 @@ devuelve en float con la media de cierre de la bolsa de un año dado, si la fech
 				try (BufferedReader br = Files.newBufferedReader(ruta)){
 					//BufferedReader br = new BufferedReader(new FileReader(patch)) ***Paquete java.io
 					
-					while ((record=br.readLine())!=null);
+					while ((record=br.readLine())!=null){
 					
 					String[] campos = record.split(",");//reconoce hasta la coma tanto el split como tokenizer
 					//StringTokenizer st =new StringTokenizer(record, ",");
 					
-					String sReadYear = campos[CAMPO_FECHA].substring(0, TAM_AÑO);
+					String sReadYear = campos[CAMPO_FECHA].substring(0, TAM_AÑO);//la primera posicion y hasta donde
 					
 						//comparo las dos para saber si son iguales despues de pasarlo al mismo tipo
 							if (sYear.equals(sReadYear)) {
 								numYears++;
 								closeValue += Float.parseFloat(campos[CAMPO_CLOSE]);
 				}
+					}
 							
 						if (numYears != 0)
-							closeValue = closeValue / numYears;}	
-				 catch (Exception e) {
+							closeValue = closeValue / numYears;
+						}catch (Exception e) {
+					 	e.printStackTrace();					 
 					closeValue = -1;
 				}
 				return closeValue;
 
 		}
+
+
+		
 }
 	
 

@@ -1,4 +1,4 @@
-	/*import java.text.ParseException;
+	import java.text.ParseException;
 	import java.text.SimpleDateFormat;
 	import java.util.Scanner;
 
@@ -6,21 +6,16 @@
 
 		public static void main(String[] args) {
 			
-			/* Metodo 1*//*
+			/* Metodo 3*/
 			System.out.println("******Metodo3******");
 			
 			Ibex ibex=new Ibex();
-			ibex.getCloseValue(year, path) {
-				return getCloseValue(year, CSV);
-			}
+			//SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+		float pr=ibex.getCloseValue(2001,"res/bolsa.csv");
+		System.out.println(pr);
 			
-		
-	
-			
-			
-			
-			
-		}
 
 	}
-*/
+		
+}
