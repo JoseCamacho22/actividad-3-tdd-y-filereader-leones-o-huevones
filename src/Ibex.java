@@ -28,6 +28,7 @@ public class Ibex {
 
 	public static final int CAMPO_FECHA = 2;
 	public static final int CAMPO_CLOSE = 7;
+	private static final int TAM_AÑO = 4;
 
 	final static String RUTA = "res/bolsa.csv";
 
