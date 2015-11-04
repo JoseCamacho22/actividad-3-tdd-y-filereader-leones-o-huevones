@@ -8,6 +8,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
 
+
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import java.nio.Buffer;
+import java.nio.charset.StandardCharsets;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+
+import java.util.List;
+
+
 public class Ibex {
 
 	public static final int CAMPO_FECHA = 2;
@@ -15,6 +31,56 @@ public class Ibex {
 
 	final static String RUTA = "res/bolsa.csv";
 
+	
+/*Metodo 3
+ * 
+3- Crear mediante sobrecarga otro método que recibe la ruta de un fichero de texto CSV y 
+devuelve en float con la media de cierre de la bolsa de un año dado, si la fecha no existe devolverá 
+0.0, si ocurriera algún error devolverá -1
+*/
+		
+		public float getCloseValue(int year, String path) {
+			
+			Path ruta = Paths.get(path);
+			String record ;
+			float closeValue = 0.0f;
+			String sYear = Integer.toString(year);
+			int numYears =0;
+			
+					//dos maneras de leer fichero java Nio y un try witch resources 
+					//para cerrarlo automaticamente
+				try (BufferedReader br = Files.newBufferedReader(ruta)){
+					//BufferedReader br = new BufferedReader(new FileReader(patch)) ***Paquete java.io
+					
+					while ((record=br.readLine())!=null){
+					
+					String[] campos = record.split(",");//reconoce hasta la coma tanto el split como tokenizer
+					//StringTokenizer st =new StringTokenizer(record, ",");
+					
+					String sReadYear = campos[CAMPO_FECHA].substring(0, TAM_AÑO);//la primera posicion y hasta donde
+					
+						//comparo las dos para saber si son iguales despues de pasarlo al mismo tipo
+							if (sYear.equals(sReadYear)) {
+								numYears++;
+								closeValue += Float.parseFloat(campos[CAMPO_CLOSE]);
+				}
+					}
+							
+						if (numYears != 0)
+							closeValue = closeValue / numYears;
+						}catch (Exception e) {
+					 	e.printStackTrace();					 
+					closeValue = -1;
+				}
+				return closeValue;
+
+		}
+
+
+		/*Metodo 5
+ * 
+*/
+	
 	
 	static float getValue(Date fecha, int field, String path ){
 		String record;
@@ -89,4 +155,7 @@ public class Ibex {
 
 
 	
+
 }
+	
+
