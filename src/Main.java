@@ -15,7 +15,15 @@
 		float pr=ibex.getCloseValue(2001,"res/bolsa.csv");
 		System.out.println(pr);
 			
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String fecha1="20000103";
+		String fecha2="20000120";
+		
+		try{
+			System.out.println(Ibex.getCloseAvg(sdf.parse(fecha1), sdf.parse(fecha2)));
+		}catch(ParseException e){}
+	}
 
 	}
 		
-}
